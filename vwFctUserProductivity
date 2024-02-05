@@ -3,7 +3,6 @@ CREATE VIEW	[dwv].[FctUserProductivity]
 ----/*
 --Object Type         : SQL Server View
 --Object Type Name    : dmv.FctWorkflowAnalysis
---Company             : Silica Financial Administration Solutions
 --Initial Author      : Eric Silinda (ES)
 --Initial Created Date: 2021-05-06
 --Version Control     : V 1.0.0
