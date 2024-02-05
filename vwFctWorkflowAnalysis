@@ -1,0 +1,23 @@
+--view
+SELECT 
+				--dqt.[StatusChanged]
+				dqt.[CreateDate]+'-'+dqt.[RecordCd]+ '-' +dqt.[CrNode] as 'InstructionIdentifier'
+				,dqt.[ClientCode]
+				,dqt.[Manco]
+				,dqt.[EndWorktype] as 'Worktype'
+				,dqt.[StartQueue]
+				,LEFT([EndDateTime],10) AS 'Processing Date'
+				,CONVERT(datetime,LEFT([EndDateTime],10) +' '+ REPLACE(SUBSTRING([EndDateTime],12,8), '.', ':'))'Process Time'
+				,dqt.[EndDateTime] as 'ENDDATTIM'
+				,dqt.[EndStatus] as 'Status'
+				,dqt.[Username] as 'AWDUserId'
+				,st.[ProcessStep]
+				--,DU.[awd_user_mapping_id]			
+FROM			[DataWarehouse].[dw].[FctWorkflowAnalysis] dqt	WITH (NOLOCK)
+LEFT JOIN dw.StatusMapping st ON  st.ClientCode	=	dqt.ClientCode
+											AND st.WorkType		=	dqt.[EndWorktype]
+											AND st.Status		=	dqt.[EndStatus]
+--LEFT JOIN [DataWarehouse].[dwv].[DimUser] DU ON DU.[AWDUserID] = dqt.AWDUserId
+--											AND CAST(LEFT(dqt.ENDDATTIM,10) AS DATE) BETWEEN DU.[start_date] AND ISNULL(DU.[end_date], '9999-12-31')
+
+WHERE LEFT(EndDateTime,10) >= '2021-01-01'
