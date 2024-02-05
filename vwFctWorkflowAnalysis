@@ -1,4 +1,25 @@
---view
+
+CREATE VIEW	[dwv].[FctUserProductivity]
+----/*
+--Object Type         : SQL Server View
+--Object Type Name    : dmv.FctWorkflowAnalysis
+--Company             : Silica Financial Administration Solutions
+--Initial Author      : Eric Silinda (ES)
+--Initial Created Date: 2021-05-06
+--Version Control     : V 1.0.0
+--=======================================================================================================================================================================================
+--Change Control
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--Date              Version              Author              ChangeID              Task Log System              Log #              Change Description
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--2021-05-06        V 1.0.0              ES					N/A                   N/A                          N/A                Initial creation.
+
+--=======================================================================================================================================================================================
+--*/
+
+---- Begin view
+
+AS
 SELECT 
 				--dqt.[StatusChanged]
 				dqt.[CreateDate]+'-'+dqt.[RecordCd]+ '-' +dqt.[CrNode] as 'InstructionIdentifier'
@@ -21,3 +42,5 @@ LEFT JOIN dw.StatusMapping st ON  st.ClientCode	=	dqt.ClientCode
 --											AND CAST(LEFT(dqt.ENDDATTIM,10) AS DATE) BETWEEN DU.[start_date] AND ISNULL(DU.[end_date], '9999-12-31')
 
 WHERE LEFT(EndDateTime,10) >= '2021-01-01'
+
+GO
