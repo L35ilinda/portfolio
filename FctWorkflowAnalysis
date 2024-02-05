@@ -1,0 +1,41 @@
+USE [DataWarehouse]
+GO
+
+/****** Object:  Table [dw].[FctWorkflowAnalysis]    Script Date: 2024/02/05 15:05:15 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dw].[FctWorkflowAnalysis](
+	[WorkflowAnalysisKey] [bigint] IDENTITY(1,1) NOT NULL,
+	[CreateDate] [varchar](50) NOT NULL,
+	[CrNode] [varchar](5) NOT NULL,
+	[RecordCd] [varchar](5) NOT NULL,
+	[ClientCode] [varchar](50) NOT NULL,
+	[Manco] [varchar](255) NOT NULL,
+	[StartWorktype] [varchar](50) NULL,
+	[StartDateTime] [varchar](50) NULL,
+	[StartQueue] [varchar](50) NULL,
+	[StartStatus] [varchar](50) NULL,
+	[EndWorktype] [varchar](50) NOT NULL,
+	[EndDateTime] [varchar](50) NOT NULL,
+	[Duration(s)] [decimal](18, 5) NULL,
+	[EndQueue] [varchar](50) NOT NULL,
+	[EndStatus] [varchar](50) NOT NULL,
+	[Username] [varchar](50) NOT NULL,
+	[Comment] [varchar](max) NULL,
+	[SuspensionCount] [decimal](18, 0) NOT NULL,
+	[SuspensionDuration(s)] [decimal](18, 5) NOT NULL,
+	[InstructionStartDate] [varchar](50) NOT NULL,
+	[InstructionEndDate] [varchar](50) NOT NULL,
+	[InstructionDuration(s)] [decimal](18, 5) NOT NULL,
+ CONSTRAINT [PK_FctWorkflow_Analysis] PRIMARY KEY CLUSTERED 
+(
+	[WorkflowAnalysisKey] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 95) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+
